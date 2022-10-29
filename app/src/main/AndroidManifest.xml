@@ -14,10 +14,10 @@
         android:theme="@style/Theme.ManajemenBengkel"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".FormWarehouse"
+            android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".FormWarehouse"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
