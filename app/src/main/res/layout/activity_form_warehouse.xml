@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FormWarehouse">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="DATA WAREHOUSE" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:paddingHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="JENIS BARANG" />
+
+    <EditText
+        android:id="@+id/etJenis"
+        android:paddingHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingBottom="10dp"
+        android:hint="Ex : Ban, Baut" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:paddingHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NAMA BARANG" />
+
+    <EditText
+        android:id="@+id/etNama"
+        android:paddingHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingBottom="10dp"
+        android:hint="Ex : Ban dalam corsa" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:paddingHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HARGA BARANG" />
+
+    <EditText
+        android:id="@+id/etHarga"
+        android:paddingHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Ex : 35000" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:paddingHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="STOK BARANG" />
+
+    <EditText
+        android:id="@+id/etStok"
+        android:paddingHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Ex : 50" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_margin="10dp"
+            android:id="@+id/btn_simpan_warehouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SIMPAN" />
+
+        <Button
+            android:layout_margin="10dp"
+            android:id="@+id/btn_batal_warehouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="BATAL" />
+
+        <Button
+            android:layout_margin="10dp"
+            android:id="@+id/btn_kembali_warehouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="KEMBALI" />
+    </LinearLayout>
+</LinearLayout>
