@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/textView"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID BARANG"
+            android:textSize="10sp"
+            android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvId"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="5dp"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+            android:id="@+id/textView2"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NAMA BARANG"
+            android:textSize="10sp"
+            android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvNama"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="5dp"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+            android:id="@+id/textView3"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="JENIS BARANG"
+            android:textSize="10sp"
+            android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvJenis"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="5dp"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+            android:id="@+id/textView4"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HARGA BARANG"
+            android:textSize="10sp"
+            android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvHarga"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="5dp"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+            android:id="@+id/textView5"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="STOK BARANG"
+            android:textSize="10sp"
+            android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvStok"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="5dp"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnitemRubah"
+                android:text="Rubah"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <Button
+                android:id="@+id/btnitemHapus"
+                android:text="Hapus"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+</LinearLayout>
