@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="auto"
     android:orientation="vertical"
     tools:context=".ListItem">
 
@@ -11,19 +12,33 @@
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="25sp"
         android:layout_margin="15dp"
-        android:text="DATA WAREHOUSE" />
+        android:text="DATA WAREHOUSE"
+        android:textAlignment="center"
+        android:textSize="25sp" />
 
     <ListView
-        android:layout_marginHorizontal="10dp"
-        android:layout_below="@id/textView6"
-        android:layout_above="@id/button_kembaliwarehouse"
         android:id="@+id/listViewWarehouse"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_kembaliwarehouse"
+        android:layout_below="@id/textView6"
+        android:layout_marginHorizontal="10dp"></ListView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/listViewWarehouse"
+        android:layout_alignEnd="@id/listViewWarehouse"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Tambah Data"
+        android:focusable="auto"
+        android:foreground="@android:drawable/ic_input_add"
+        app:fabSize="normal" />
 
     <Button
         android:id="@+id/button_kembaliwarehouse"

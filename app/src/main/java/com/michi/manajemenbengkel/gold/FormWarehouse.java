@@ -47,6 +47,18 @@ public class FormWarehouse extends AppCompatActivity {
                 validasidata();
             }
         });
+        kembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        batal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     private void validasidata() {
@@ -65,7 +77,7 @@ public class FormWarehouse extends AppCompatActivity {
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                rubahdata(strId,strNama,strJenis,strHarga,strStok);
+                                allItem(strId,strNama,strJenis,strHarga,strStok,tipe);
                             }
                         });
                 dialog.create();
@@ -78,100 +90,50 @@ public class FormWarehouse extends AppCompatActivity {
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                hapusdata(strId);
+                                allItem(strId,strNama,strJenis,strHarga,strStok,tipe);
                             }
                         });
                 dialog.create();
                 dialog.show();
-            }else {
+            }else if (tipe.equals("3")){
                 String id = strNama.substring(0,2);
                 Calendar calendar = Calendar.getInstance();
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int year = calendar.get(Calendar.YEAR);
                 String years = Integer.toString(year);
                 strId = id+years.substring(2)+Integer.toString(day);
-                simpandata(strId, strJenis,strNama,strHarga,strStok);
+                allItem(strId,strNama,strJenis,strHarga,strStok,tipe);
             }
         }
     }
 
-    private void hapusdata(String strId){
-        AndroidNetworking.post(KoneksiAPI.hapusbarang)
-                .addBodyParameter("id", strId)
-                .setPriority(Priority.MEDIUM)
-                .build().getAsJSONObject(new JSONObjectRequestListener() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    Log.i("Delete Item Warehouse", "onResponse: "+response);
-                    Toast.makeText(getApplicationContext(), "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
-                    bersih();
-                }catch (Exception e){
-                    e.printStackTrace();
+    private void allItem(String strId, String strJenis, String strNama, String strHarga, String strStok, String tipe){
+        AndroidNetworking.post(KoneksiAPI.AllItem)
+            .addBodyParameter("id", strId)
+            .addBodyParameter("nama", strNama)
+            .addBodyParameter("jenis", strJenis)
+            .addBodyParameter("harga", strHarga)
+            .addBodyParameter("stok", strStok)
+            .addBodyParameter("tipe", tipe)
+            .setPriority(Priority.MEDIUM)
+            .build()
+            .getAsJSONObject(new JSONObjectRequestListener() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        Log.i("Success Item Warehouse", "onResponse: "+response);
+                        Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_SHORT).show();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
-            }
 
-            @Override
-            public void onError(ANError anError) {
-                Toast.makeText(getApplicationContext(), "Data gagal dihapus", Toast.LENGTH_SHORT).show();
-                Log.i(TAG, "onError: "+ anError.getErrorDetail());
-            }
-        });
-    }
-    private void rubahdata(String strId, String strJenis, String strNama, String strHarga, String strStok){
-        AndroidNetworking.post(KoneksiAPI.updateBarang)
-                .addBodyParameter("id", strId)
-                .addBodyParameter("nama", strNama)
-                .addBodyParameter("jenis", strJenis)
-                .addBodyParameter("harga", strHarga)
-                .addBodyParameter("stok", strStok)
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            Log.i("Update Item Warehouse", "onResponse: "+response);
-                            Toast.makeText(getApplicationContext(), "Data berhasil diupdate", Toast.LENGTH_SHORT).show();
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        Toast.makeText(getApplicationContext(), "Data gagal diupdate", Toast.LENGTH_SHORT).show();
-                        Log.i(TAG, "onError: "+ anError.getErrorDetail());
-                    }
-                });
-    }
-    private void simpandata(String strId, String strJenis, String strNama, String strHarga, String strStok) {
-        AndroidNetworking.post(KoneksiAPI.tambahBarang)
-                .addBodyParameter("id", strId)
-                .addBodyParameter("nama", strNama)
-                .addBodyParameter("jenis", strJenis)
-                .addBodyParameter("harga", strHarga)
-                .addBodyParameter("stok", strStok)
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            Log.i("Entri Warehouse", "onResponse: "+response);
-                            Toast.makeText(getApplicationContext(), "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                            bersih();
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        Toast.makeText(getApplicationContext(), "Data gagal ditambahkan", Toast.LENGTH_SHORT).show();
-                        Log.i(TAG, "onError: "+ anError.getErrorDetail());
-                    }
-                });
+                @Override
+                public void onError(ANError anError) {
+                    Toast.makeText(getApplicationContext(), "Gagal!", Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, "onError: "+ anError.getErrorDetail());
+                }
+            });
     }
 
     private void bersih() {
@@ -199,6 +161,7 @@ public class FormWarehouse extends AppCompatActivity {
         if (tipe.equals("1")){
             simpan.setText("Rubah");
         } else if (tipe.equals("2")){
+            Log.i(TAG, "tipee : " + tipe);
             simpan.setText("Hapus");
         }else {
             simpan.setText("Simpan");

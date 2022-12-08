@@ -22,6 +22,8 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,6 +48,7 @@ public class ListItem extends AppCompatActivity implements View.OnClickListener,
         setContentView(R.layout.activity_list_item);
         btnkembali = findViewById(R.id.button_kembaliwarehouse);
         actvity = this;
+        FloatingActionButton fab = findViewById(R.id.fab);
         listItem = (ListView) findViewById(R.id.listViewWarehouse);
         listItem.setOnItemClickListener(this);
         listItem.setOverScrollMode(View.OVER_SCROLL_NEVER);
@@ -55,7 +58,21 @@ public class ListItem extends AppCompatActivity implements View.OnClickListener,
                 onBackPressed();
             }
         });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent tambah = new Intent(getApplicationContext(), FormWarehouse.class);
+                tambah.putExtra("id", "");
+                tambah.putExtra("nama", "");
+                tambah.putExtra("jenis", "");
+                tambah.putExtra("harga", "");
+                tambah.putExtra("stok", "");
+                tambah.putExtra("tipe", "3");
+                startActivity(tambah);
+            }
+        });
     }
+
     @Override
     public void onClick(View view) {
 
@@ -170,6 +187,7 @@ public class ListItem extends AppCompatActivity implements View.OnClickListener,
                     startActivity(hapus);
                 }
             });
+
             return view;
         }
     }
