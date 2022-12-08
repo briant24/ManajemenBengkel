@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import java.util.Calendar;
 public class FormWarehouse extends AppCompatActivity {
     private EditText jenis,nama,harga,stok;
     private Button simpan, kembali, batal;
+    private Toast pesan;
     private String strJenis,strNama,strId, strHarga, strStok, tipe, stid,stnama,stjenis,stharga,ststok;
 
     @Override
@@ -122,7 +124,24 @@ public class FormWarehouse extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         Log.i("Success Item Warehouse", "onResponse: "+response);
-                        Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                        int toastDurationInMilliSeconds = 10000;
+                        pesan = Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_LONG);
+                        CountDownTimer countDownTimer;
+                        countDownTimer = new CountDownTimer(toastDurationInMilliSeconds, 1000) {
+                            @Override
+                            public void onTick(long l) {
+                                pesan.show();
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                pesan.cancel();
+                            }
+                        };
+                        pesan.show();
+                        countDownTimer.start();
+
                     }catch (Exception e){
                         e.printStackTrace();
                     }
