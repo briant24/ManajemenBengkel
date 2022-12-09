@@ -3,9 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable-anydpi/ic_dropdown.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable-v24/ic_nama_focused.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/custom_button.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/custom_ic_password.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/custom_ic_username.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/custom_icon.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/custom_input.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/custom_spinner.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_dropdown.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_password_focused.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_username_focused.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/nama.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/password.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/round_border.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/username.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_form_warehouse.xml" value="0.1" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_list_item.xml" value="0.25" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_main.xml" value="0.21041666666666667" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_register.xml" value="0.19927536231884058" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/layout_list_item.xml" value="0.1518987341772152" />
       </map>
     </option>
