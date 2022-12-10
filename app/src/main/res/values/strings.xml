@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Manajemen Bengkel</string>
+    <string name="loginbtn"><u>Login</u></string>
 </resources>

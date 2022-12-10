@@ -141,6 +141,9 @@ public class FormWarehouse extends AppCompatActivity {
                         };
                         pesan.show();
                         countDownTimer.start();
+                        if (tipe.equals("3")){
+                            bersih();
+                        }
 
                     }catch (Exception e){
                         e.printStackTrace();

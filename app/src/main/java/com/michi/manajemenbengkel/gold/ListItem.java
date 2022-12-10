@@ -91,7 +91,7 @@ public class ListItem extends AppCompatActivity implements View.OnClickListener,
 
     private void GetData() {
         list_item = new ArrayList<HashMap<String, String>>();
-        AndroidNetworking.get(KoneksiAPI.lihatBarang)
+        AndroidNetworking.get(KoneksiAPI.ShowItem)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
