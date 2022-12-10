@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Manajemen Bengkel</string>
     <string name="loginbtn"><u>Login</u></string>
+    <string name="forgot"><u>Lupa Password?</u></string>
 </resources>

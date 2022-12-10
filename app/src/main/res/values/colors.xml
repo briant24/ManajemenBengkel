@@ -10,4 +10,6 @@
     <color name="darker_gray">#a9a9a9</color>
     <color name="white">#FFFFFFFF</color>
     <color name="accent_apk">#7d86b3</color>
+    <color name="accent_apk2">#00e0c2</color>
+    <color name="accent_apk3">#02b39a</color>
 </resources>
