@@ -29,7 +29,7 @@
 
     <EditText
         android:id="@+id/etUserLog"
-        android:background="@drawable/custom_input"
+        android:background="@drawable/custom_input2"
         android:layout_below="@id/login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -39,14 +39,14 @@
         android:textColor="@color/darker_gray"
         android:textColorHint="@color/darker_gray"
         android:inputType="textPersonName"
-        android:drawableStart="@drawable/custom_ic_username"
+        android:drawableStart="@drawable/custom_ic_username2"
         android:drawablePadding="10dp"
         android:paddingStart="15dp"
         android:hint="Username" />
 
     <EditText
         android:id="@+id/etPassLog"
-        android:background="@drawable/custom_input"
+        android:background="@drawable/custom_input2"
         android:layout_below="@id/etUserLog"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -56,7 +56,7 @@
         android:textColor="@color/darker_gray"
         android:textColorHint="@color/darker_gray"
         android:inputType="textPassword"
-        android:drawableStart="@drawable/custom_ic_password"
+        android:drawableStart="@drawable/custom_ic_password2"
         android:drawablePadding="10dp"
         android:paddingStart="15dp"
         android:hint="Password" />
