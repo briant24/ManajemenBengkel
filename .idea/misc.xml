@@ -15,6 +15,7 @@
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/custom_input.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/custom_input2.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/custom_spinner.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_add_data.xml" value="0.20810810810810812" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_dropdown.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_exit.xml" value="0.3609375" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_history.xml" value="0.3609375" />
@@ -28,8 +29,8 @@
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/password.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/round_border.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/username.xml" value="0.240625" />
-        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_form_warehouse.xml" value="0.1" />
-        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_list_item.xml" value="0.25" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_form_warehouse.xml" value="0.22" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_list_item.xml" value="0.22" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_login.xml" value="0.22447916666666667" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_main.xml" value="0.21041666666666667" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_register.xml" value="0.19927536231884058" />

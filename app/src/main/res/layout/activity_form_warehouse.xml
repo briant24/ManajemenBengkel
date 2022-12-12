@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical"
     tools:context=".FormWarehouse">
 
@@ -19,6 +20,7 @@
         android:text="DATA WAREHOUSE" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView2"
         android:paddingHorizontal="20dp"
         android:layout_marginVertical="10dp"
@@ -27,6 +29,7 @@
         android:text="JENIS BARANG" />
 
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/etJenis"
         android:paddingHorizontal="20dp"
         android:layout_width="match_parent"
@@ -34,9 +37,11 @@
         android:ems="10"
         android:inputType="textCapSentences"
         android:paddingBottom="10dp"
+        android:textColorHint="@color/darker_gray"
         android:hint="Ex : Ban, Baut" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView3"
         android:paddingHorizontal="20dp"
         android:layout_marginVertical="10dp"
@@ -45,16 +50,19 @@
         android:text="NAMA BARANG" />
 
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/etNama"
         android:paddingHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textCapSentences"
+        android:textColorHint="@color/darker_gray"
         android:paddingBottom="10dp"
         android:hint="Ex : Ban dalam corsa" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView4"
         android:paddingHorizontal="20dp"
         android:layout_marginVertical="10dp"
@@ -63,15 +71,18 @@
         android:text="HARGA BARANG" />
 
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/etHarga"
         android:paddingHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textColorHint="@color/darker_gray"
         android:inputType="textCapSentences"
         android:hint="Ex : 35000" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView5"
         android:paddingHorizontal="20dp"
         android:layout_marginVertical="10dp"
@@ -80,11 +91,13 @@
         android:text="STOK BARANG" />
 
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/etStok"
         android:paddingHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textColorHint="@color/darker_gray"
         android:inputType="textCapWords"
         android:hint="Ex : 50" />
 
@@ -96,6 +109,7 @@
         <Button
             android:layout_margin="10dp"
             android:id="@+id/btn_simpan_warehouse"
+            android:background="@drawable/custom_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -103,6 +117,7 @@
 
         <Button
             android:layout_margin="10dp"
+            android:background="@drawable/custom_button"
             android:id="@+id/btn_batal_warehouse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,6 +126,7 @@
 
         <Button
             android:layout_margin="10dp"
+            android:background="@drawable/custom_button"
             android:id="@+id/btn_kembali_warehouse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
