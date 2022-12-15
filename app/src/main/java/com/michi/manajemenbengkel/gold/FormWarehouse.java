@@ -43,6 +43,7 @@ public class FormWarehouse extends AppCompatActivity {
         simpan = findViewById(R.id.btn_simpan_warehouse);
         batal = findViewById(R.id.btn_batal_warehouse);
         kembali = findViewById(R.id.btn_kembali_warehouse);
+
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,27 +125,8 @@ public class FormWarehouse extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         Log.i("Success Item Warehouse", "onResponse: "+response);
+                        Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_LONG).show();
                         onBackPressed();
-                        int toastDurationInMilliSeconds = 10000;
-                        pesan = Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_LONG);
-                        CountDownTimer countDownTimer;
-                        countDownTimer = new CountDownTimer(toastDurationInMilliSeconds, 1000) {
-                            @Override
-                            public void onTick(long l) {
-                                pesan.show();
-                            }
-
-                            @Override
-                            public void onFinish() {
-                                pesan.cancel();
-                            }
-                        };
-                        pesan.show();
-                        countDownTimer.start();
-                        if (tipe.equals("3")){
-                            bersih();
-                        }
-
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -156,13 +138,6 @@ public class FormWarehouse extends AppCompatActivity {
                     Log.i(TAG, "onError: "+ anError.getErrorDetail());
                 }
             });
-    }
-
-    private void bersih() {
-        jenis.setText("");
-        nama.setText("");
-        harga.setText("");
-        stok.setText("");
     }
 
     @Override

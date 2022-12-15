@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                                         Intent teknisi = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(teknisi);
                                     } else if (level.equals("Admin Warehouse")) {
-                                        Intent admin = new Intent(getApplicationContext(), MainActivity.class);
+                                        Intent admin = new Intent(getApplicationContext(), ListItem.class);
                                         startActivity(admin);
                                     } else if (level.equals("Kasir")) {
                                         Intent kasir = new Intent(getApplicationContext(), RegisterActivity.class);

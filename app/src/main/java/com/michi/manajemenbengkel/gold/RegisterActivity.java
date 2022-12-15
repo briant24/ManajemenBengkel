@@ -24,6 +24,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -68,8 +69,37 @@ public class RegisterActivity extends AppCompatActivity {
             dialog.create();
             dialog.show();
         }else{
-            uploadRegister(etnama,etuser,etpass,spinner_data);
+            cekuserTersedia(etnama,etuser,etpass,spinner_data);
         }
+    }
+
+    private void cekuserTersedia(String etnama, String etuser, String etpass, String spinner_data) {
+        AndroidNetworking.post(KoneksiAPI.register)
+                .addBodyParameter("username", etuser)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("list_user");
+                            Integer inthasil = jsonArray.length();
+                            Log.i(TAG, "banyakdata: " + inthasil);
+                            if (inthasil > 0) {
+                                Toast.makeText(getApplicationContext(), "Username Terpakai", Toast.LENGTH_SHORT).show();
+                            } else {
+                                uploadRegister(etnama,etuser,etpass,spinner_data);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.i("cek error", "onError: " + anError.getErrorDetail());
+                    }
+                });
     }
 
     private void uploadRegister(String etnama, String etuser, String etpass, String spinner_data) {
