@@ -24,11 +24,11 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import org.json.JSONObject;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class FormWarehouse extends AppCompatActivity {
     private EditText jenis,nama,harga,stok;
     private Button simpan, kembali, batal;
-    private Toast pesan;
     private String strJenis,strNama,strId, strHarga, strStok, tipe, stid,stnama,stjenis,stharga,ststok;
 
     @Override
@@ -99,13 +99,14 @@ public class FormWarehouse extends AppCompatActivity {
                 dialog.create();
                 dialog.show();
             }else if (tipe.equals("3")){
+                //Primary Key not final
                 String id = strNama.substring(0,2);
                 Calendar calendar = Calendar.getInstance();
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
-                int year = calendar.get(Calendar.YEAR);
-                String years = Integer.toString(year);
-                strId = id+years.substring(2)+Integer.toString(day);
+                Date clock = calendar.getTime();
+                strId = id+Integer.toString(day)+clock;
                 allItem(strId,strNama,strJenis,strHarga,strStok,tipe);
+                Log.i(TAG, "validasidata: "+strId);
             }
         }
     }
@@ -125,6 +126,7 @@ public class FormWarehouse extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         Log.i("Success Item Warehouse", "onResponse: "+response);
+                        Log.i(TAG, "onResponse: " + strId);
                         Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_LONG).show();
                         onBackPressed();
                     }catch (Exception e){
