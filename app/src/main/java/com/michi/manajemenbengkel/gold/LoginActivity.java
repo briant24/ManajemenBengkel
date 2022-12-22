@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String level = json.getString("level");
                                     if (level.equals("Teknisi")) {
                                         Intent teknisi = new Intent(getApplicationContext(), MainActivity.class);
+                                        teknisi.putExtra("nama", nama);
                                         startActivity(teknisi);
                                     } else if (level.equals("Admin Warehouse")) {
                                         Intent admin = new Intent(getApplicationContext(), ListItem.class);

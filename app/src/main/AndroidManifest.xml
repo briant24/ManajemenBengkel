@@ -14,6 +14,9 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".TeknisiWorkActivity"
+            android:exported="true" />
+        <activity
             android:name=".ListItem"
             android:exported="true" />
         <activity
@@ -23,10 +26,10 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".RegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
