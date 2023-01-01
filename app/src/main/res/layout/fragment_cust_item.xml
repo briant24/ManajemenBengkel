@@ -46,12 +46,13 @@
         android:text="Nopol" />
 
     <ListView
-        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/listViewTeknisi"
-        android:layout_below="@id/stNopolCust"
-        android:layout_above="@id/button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/button"
+        android:layout_below="@id/stNopolCust"
+        android:layout_marginHorizontal="15dp" />
 
     <Button
         android:layout_alignParentBottom="true"

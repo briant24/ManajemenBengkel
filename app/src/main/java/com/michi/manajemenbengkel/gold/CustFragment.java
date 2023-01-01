@@ -24,7 +24,6 @@ public class CustFragment extends Fragment {
     private Button btnNext;
     private String nama,nopol,motor;
     private View rootView;
-    private Spinner spinner;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -79,10 +78,6 @@ public class CustFragment extends Fragment {
         namaCust = rootView.findViewById(R.id.etNamaCust);
         nopolCust = rootView.findViewById(R.id.etNopolCust);
         motorCust = rootView.findViewById(R.id.etMotorCust);
-        spinner = rootView.findViewById(R.id.spinnerBayar);
-        String[] items= new String[]{"Belum Bayar", "Sudah Bayar"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, items);
-        spinner.setAdapter(adapter);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +87,7 @@ public class CustFragment extends Fragment {
     }
 
     private void validasidata() {
-        String data_status = spinner.getSelectedItem().toString();
+        String data_status = "Belum Bayar";
         nama = namaCust.getText().toString();
         nopol = nopolCust.getText().toString();
         motor = motorCust.getText().toString();
