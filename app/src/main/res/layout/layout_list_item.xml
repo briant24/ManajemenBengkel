@@ -42,24 +42,6 @@
         android:layout_height="wrap_content"
         android:text="" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_margin="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="JENIS BARANG"
-        android:textSize="10sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/tvJenis"
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="5dp"
-        android:textSize="15sp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="" />
 
     <TextView
         android:id="@+id/textView4"

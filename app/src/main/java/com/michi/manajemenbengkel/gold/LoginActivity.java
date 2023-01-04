@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etuser,etpass;
     private String stuser,stpass;
     private Button btnlog;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         etuser = findViewById(R.id.etUserLog);
         etpass = findViewById(R.id.etPassLog);
         btnlog = findViewById(R.id.btnLog);
+        sharedPreferences = getSharedPreferences("user-session",MODE_PRIVATE);
 
         btnlog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,9 +67,11 @@ public class LoginActivity extends AppCompatActivity {
                                 for (int a = 0; a < jsonArray.length(); a++) {
                                     JSONObject json = jsonArray.getJSONObject(a);
                                     String nama = json.getString("nama_user");
-                                    String username = json.getString("username");
-                                    String password = json.getString("password");
+                                    String iduser = json.getString("id_user");
                                     String level = json.getString("level");
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("id_user",iduser);
+                                    editor.apply();
                                     if (level.equals("Teknisi")) {
                                         Intent teknisi = new Intent(getApplicationContext(), MainActivity.class);
                                         teknisi.putExtra("nama", nama);

@@ -1,5 +1,7 @@
 package com.michi.manajemenbengkel.gold;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,7 +24,7 @@ import android.widget.Toast;
 public class CustFragment extends Fragment {
     private EditText namaCust,nopolCust,motorCust;
     private Button btnNext;
-    private String nama,nopol,motor;
+    private String nama,nopol,motor,id_tek;
     private View rootView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,6 +73,11 @@ public class CustFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_cust, container, false);
         initview();
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     private void initview() {

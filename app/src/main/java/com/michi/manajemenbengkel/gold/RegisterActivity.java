@@ -84,7 +84,6 @@ public class RegisterActivity extends AppCompatActivity {
                         try {
                             JSONArray jsonArray = response.getJSONArray("list_user");
                             Integer inthasil = jsonArray.length();
-                            Log.i(TAG, "banyakdata: " + inthasil);
                             if (inthasil > 0) {
                                 Toast.makeText(getApplicationContext(), "Username Terpakai", Toast.LENGTH_SHORT).show();
                             } else {

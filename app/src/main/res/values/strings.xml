@@ -2,4 +2,6 @@
     <string name="app_name">Manajemen Bengkel</string>
     <string name="loginbtn"><u>Login</u></string>
     <string name="forgot"><u>Lupa Password?</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

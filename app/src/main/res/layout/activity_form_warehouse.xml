@@ -21,27 +21,6 @@
 
     <TextView
         android:textColor="@color/black"
-        android:id="@+id/textView2"
-        android:paddingHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="JENIS BARANG" />
-
-    <EditText
-        android:textColor="@color/black"
-        android:id="@+id/etJenis"
-        android:paddingHorizontal="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textCapSentences"
-        android:paddingBottom="10dp"
-        android:textColorHint="@color/darker_gray"
-        android:hint="Ex : Ban, Baut" />
-
-    <TextView
-        android:textColor="@color/black"
         android:id="@+id/textView3"
         android:paddingHorizontal="20dp"
         android:layout_marginVertical="10dp"

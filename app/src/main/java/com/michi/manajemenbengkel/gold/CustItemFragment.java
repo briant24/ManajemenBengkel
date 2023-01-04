@@ -1,47 +1,35 @@
 package com.michi.manajemenbengkel.gold;
 
-import android.app.Activity;
+import static android.content.ContentValues.TAG;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.CallSuper;
-import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
-import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.google.android.material.tabs.TabLayout;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CustItemFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CustItemFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener{
-    TextView stNama,stMotor,stNopol;
-    private Button btnSimpan;
-    private Activity actvity;
-    private ListView listBarang;
-    private AdapterWarehouse Adapter;
-    private ArrayList<HashMap<String, String>> list_barang;
+public class CustItemFragment extends Fragment{
+    private TextView stNama,stMotor,stNopol;
+    private Button btnSimpan,btnKembali;
     private View rootView;
-
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -74,6 +62,36 @@ public class CustItemFragment extends Fragment implements View.OnClickListener, 
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setUpViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    private void setUpViewPager(ViewPager viewPager) {
+        SectionPageAdapter adapter = new SectionPageAdapter(getChildFragmentManager());
+        adapter.addFragment(new ChildCustItemFragment(), "Tambah Item");
+        adapter.addFragment(new ChildShowCustItemFragment(), "Lihat Item");
+        viewPager.setAdapter(adapter);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -85,82 +103,49 @@ public class CustItemFragment extends Fragment implements View.OnClickListener, 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        rootView = inflater.inflate(R.layout.fragment_cust_item, container, false);
+        viewPager = rootView.findViewById(R.id.viewPager);
+        tabLayout = rootView.findViewById(R.id.tabLayout);
         Bundle bundle = this.getArguments();
         String nama_cust = bundle.getString("nama");
         String nopol_cust = bundle.getString("nopol");
         String motor_cust = bundle.getString("motor");
         String status_cust = bundle.getString("status");
-        actvity = getActivity();
-        rootView = inflater.inflate(R.layout.fragment_cust_item, container, false);
         stNama = rootView.findViewById(R.id.stNamaCust);
         stMotor = rootView.findViewById(R.id.stMotorCust);
         stNopol = rootView.findViewById(R.id.stNopolCust);
         stNama.setText(nama_cust);
         stMotor.setText(motor_cust);
         stNopol.setText(nopol_cust);
-        initview();
+        initview(status_cust);
         return rootView;
     }
 
-    @MainThread
-    @CallSuper
-    public void onStart(){
-        super.onStart();
-        getData();
-    }
-
-    private void getData() {
-        list_barang = new ArrayList<HashMap<String ,String >>();
-        AndroidNetworking.get(KoneksiAPI.ShowItemTek)
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("list_item");
-                            for (int a = 0; a < jsonArray.length(); a++){
-                                JSONObject jsonObject = jsonArray.getJSONObject(a);
-                                HashMap<String, String>map = new HashMap<String, String>();
-                                map.put("id_barang", jsonObject.getString("id_barang"));
-                                map.put("nama_barang",jsonObject.getString("nama_barang"));
-                                map.put("harga_barang",jsonObject.getString("harga_barang"));
-                                map.put("stok",jsonObject.getString("stok"));
-                                list_barang.add(map);
-                            }
-                            Adapter = new AdapterWarehouse(actvity, list_barang, R.layout.layout_list_barang, new String[]
-                                    {"nama_barang", "harga_barang", "stok"}, new int[]{R.id.tvNama1, R.id.tvHarga1, R.id.tvStok1});
-                            Parcelable state = listBarang.onSaveInstanceState();
-                            listBarang.setAdapter(Adapter);
-                            listBarang.onRestoreInstanceState(state);
-                            Adapter.notifyDataSetChanged();
-                        }catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-
-                    }
-                });
-    }
-
-    @Override
-    public void onClick(View view) {
-
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
-
-    private void initview() {
-        listBarang = rootView.findViewById(R.id.listViewTeknisi);
-        listBarang.setOnItemClickListener(this);
-        listBarang.setOverScrollMode(View.OVER_SCROLL_NEVER);
-        btnSimpan = rootView.findViewById(R.id.button);
+    private void initview(String status_bayar) {
+        btnKembali = rootView.findViewById(R.id.button_kembali);
+        btnKembali.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CustFragment custItemFragment = new CustFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, custItemFragment).commit();
+            }
+        });
+        btnSimpan = rootView.findViewById(R.id.button_selanjutnya);
+        btnSimpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nama = stNama.getText().toString();
+                String nopol = stNopol.getText().toString();
+                String motor = stMotor.getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("nama", nama);
+                bundle.putString("nopol", nopol);
+                bundle.putString("motor", motor);
+                bundle.putString("status", status_bayar);
+                ConfirmTransFragment custItemFragment = new ConfirmTransFragment();
+                custItemFragment.setArguments(bundle);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, custItemFragment).commit();
+            }
+        });
     }
 }

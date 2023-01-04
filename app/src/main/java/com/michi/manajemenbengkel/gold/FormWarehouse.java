@@ -27,16 +27,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class FormWarehouse extends AppCompatActivity {
-    private EditText jenis,nama,harga,stok;
+    private EditText nama,harga,stok;
     private Button simpan, kembali, batal;
-    private String strJenis,strNama,strId, strHarga, strStok, tipe, stid,stnama,stjenis,stharga,ststok;
+    private String strNama,strId, strHarga, strStok, tipe, stid,stnama,stharga,ststok;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_warehouse);
         AndroidNetworking.initialize(getApplicationContext());
-        jenis = findViewById(R.id.etJenis);
         nama = findViewById(R.id.etNama);
         harga = findViewById(R.id.etHarga);
         stok = findViewById(R.id.etStok);
@@ -65,11 +64,10 @@ public class FormWarehouse extends AppCompatActivity {
     }
 
     private void validasidata() {
-        strJenis = jenis.getText().toString();
         strNama = nama.getText().toString();
         strHarga = harga.getText().toString();
         strStok = stok.getText().toString();
-        if (strJenis.isEmpty() || strNama.isEmpty() || strHarga.isEmpty() || strStok.isEmpty()){
+        if (strNama.isEmpty() || strHarga.isEmpty() || strStok.isEmpty()){
             Toast.makeText(getApplicationContext(), "Data harus diisi secara lengkap!", Toast.LENGTH_SHORT).show();
         }else{
             if (tipe.equals("1")){
@@ -80,7 +78,7 @@ public class FormWarehouse extends AppCompatActivity {
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                allItem(strId,strNama,strJenis,strHarga,strStok,tipe);
+                                allItem(strId,strNama,strHarga,strStok,tipe);
                             }
                         });
                 dialog.create();
@@ -93,29 +91,22 @@ public class FormWarehouse extends AppCompatActivity {
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                allItem(strId,strNama,strJenis,strHarga,strStok,tipe);
+                                allItem(strId,strNama,strHarga,strStok,tipe);
                             }
                         });
                 dialog.create();
                 dialog.show();
             }else if (tipe.equals("3")){
-                //Primary Key not final
-                String id = strNama.substring(0,2);
-                Calendar calendar = Calendar.getInstance();
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                Date clock = calendar.getTime();
-                strId = id+Integer.toString(day)+clock;
-                allItem(strId,strNama,strJenis,strHarga,strStok,tipe);
-                Log.i(TAG, "validasidata: "+strId);
+                strId = "";
+                allItem(strId,strNama,strHarga,strStok,tipe);
             }
         }
     }
 
-    private void allItem(String strId, String strJenis, String strNama, String strHarga, String strStok, String tipe){
+    private void allItem(String strId, String strNama, String strHarga, String strStok, String tipe){
         AndroidNetworking.post(KoneksiAPI.AllItem)
             .addBodyParameter("id", strId)
             .addBodyParameter("nama", strNama)
-            .addBodyParameter("jenis", strJenis)
             .addBodyParameter("harga", strHarga)
             .addBodyParameter("stok", strStok)
             .addBodyParameter("tipe", tipe)
@@ -126,7 +117,6 @@ public class FormWarehouse extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         Log.i("Success Item Warehouse", "onResponse: "+response);
-                        Log.i(TAG, "onResponse: " + strId);
                         Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_LONG).show();
                         onBackPressed();
                     }catch (Exception e){
@@ -148,12 +138,10 @@ public class FormWarehouse extends AppCompatActivity {
         Intent masuk=getIntent();
         stid = masuk.getStringExtra("id");
         stnama = masuk.getStringExtra("nama");
-        stjenis = masuk.getStringExtra("jenis");
         stharga = masuk.getStringExtra("harga");
         ststok = masuk.getStringExtra("stok");
         tipe = masuk.getStringExtra("tipe");
         strId = stid;
-        jenis.setText(stjenis);
         nama.setText(stnama);
         harga.setText(stharga);
         stok.setText(ststok);

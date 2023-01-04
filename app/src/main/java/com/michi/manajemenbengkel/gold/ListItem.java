@@ -104,13 +104,12 @@ public class ListItem extends AppCompatActivity implements View.OnClickListener,
                                 HashMap<String, String>map = new HashMap<String, String>();
                                 map.put("id_barang", jsonObject.getString("id_barang"));
                                 map.put("nama_barang",jsonObject.getString("nama_barang"));
-                                map.put("jenis_barang",jsonObject.getString("jenis_barang"));
                                 map.put("harga_barang",jsonObject.getString("harga_barang"));
                                 map.put("stok",jsonObject.getString("stok"));
                                 list_item.add(map);
                             }
                             Adapter = new ListItem.ListAdapter(actvity, list_item, R.layout.layout_list_item, new String[]
-                                    {"id_barang", "nama_barang", "jenis_barang", "harga_barang", "stok"}, new int[]{R.id.tvId, R.id.tvNama, R.id.tvJenis, R.id.tvHarga, R.id.tvStok});
+                                    {"id_barang", "nama_barang", "harga_barang", "stok"}, new int[]{R.id.tvId, R.id.tvNama, R.id.tvHarga, R.id.tvStok});
                             Parcelable state = listItem.onSaveInstanceState();
                             listItem.setAdapter(Adapter);
                             listItem.onRestoreInstanceState(state);
@@ -143,20 +142,17 @@ public class ListItem extends AppCompatActivity implements View.OnClickListener,
             HashMap<String, Object> data = (HashMap<String, Object>) getItem(position);
             final TextView txtid = view.findViewById(R.id.tvId);
             final TextView txtnama = view.findViewById(R.id.tvNama);
-            final TextView txtjenis = view.findViewById(R.id.tvJenis);
             final TextView txtharga = view.findViewById(R.id.tvHarga);
             final TextView txtstok = view.findViewById(R.id.tvStok);
             final Button btnrubah = view.findViewById(R.id.btnitemRubah);
             final Button btnhapus = view.findViewById(R.id.btnitemHapus);
             final String strid = (String) data.get("id_barang");
             final String strnama = (String) data.get("nama_barang");
-            final String strjenis = (String) data.get("jenis_barang");
             final String strharga = (String) data.get("harga_barang");
             final String strstok = (String) data.get("stok");
 
             txtid.setText(strid);
             txtnama.setText(strnama);
-            txtjenis.setText(strjenis);
             txtharga.setText(strharga);
             txtstok.setText(strstok);
 
@@ -166,7 +162,6 @@ public class ListItem extends AppCompatActivity implements View.OnClickListener,
                     Intent rubah = new Intent(getApplicationContext(), FormWarehouse.class);
                     rubah.putExtra("id", strid);
                     rubah.putExtra("nama", strnama);
-                    rubah.putExtra("jenis", strjenis);
                     rubah.putExtra("harga", strharga);
                     rubah.putExtra("stok", strstok);
                     rubah.putExtra("tipe", "1");
@@ -180,7 +175,6 @@ public class ListItem extends AppCompatActivity implements View.OnClickListener,
                     Intent hapus = new Intent(getApplicationContext(), FormWarehouse.class);
                     hapus.putExtra("id", strid);
                     hapus.putExtra("nama", strnama);
-                    hapus.putExtra("jenis", strjenis);
                     hapus.putExtra("harga", strharga);
                     hapus.putExtra("stok", strstok);
                     hapus.putExtra("tipe", "2");

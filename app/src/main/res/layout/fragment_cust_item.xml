@@ -45,21 +45,55 @@
         android:textStyle="bold"
         android:text="Nopol" />
 
-    <ListView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_marginTop="10dp"
-        android:id="@+id/listViewTeknisi"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/button"
+        android:id="@+id/appBarLayout"
         android:layout_below="@id/stNopolCust"
-        android:layout_marginHorizontal="15dp" />
-
-    <Button
-        android:layout_alignParentBottom="true"
-        android:id="@+id/button"
-        android:background="@drawable/custom_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:background="@color/accent_apk">
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_above="@id/lin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appBarLayout" />
+
+    <LinearLayout
+        android:id="@+id/lin"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:id="@+id/button_kembali"
+            android:background="@color/accent_apk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KEMBALI" />
+
+        <Button
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:id="@+id/button_selanjutnya"
+            android:background="@color/accent_apk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELANJUTNYA" />
+
+    </LinearLayout>
 </RelativeLayout>
