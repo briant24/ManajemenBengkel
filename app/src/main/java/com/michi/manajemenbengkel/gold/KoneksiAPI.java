@@ -6,6 +6,9 @@ public class KoneksiAPI {
     //private static final String db ="https://androidemployee.000webhostapp.com/ManajemenWarehouse/";
     public static final String AllItem = db+"warehouse/cuditem.php";
     public static final String AddTrans = db+"transaksi/addTransaksi.php";
+    public static final String AddDetailTrans = db+"detailTransaksi/addDetailTransaksi.php";
+    public static final String DelTrans = db+"transaksi/deleteTransaksi.php";
+    public static final String UpdateTrans = db+"transaksi/updateTransaksi.php";
     public static final String tempTrans = db+"transTemp/addtranstemp.php";
     public static final String deltempTrans = db+"transTemp/deltranstemp.php";
     public static final String delAlltempTrans = db+"transTemp/delalltranstemp.php";

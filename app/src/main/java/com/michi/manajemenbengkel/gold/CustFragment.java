@@ -2,6 +2,8 @@ package com.michi.manajemenbengkel.gold;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +18,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
+import org.json.JSONObject;
+
+import java.util.Locale;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CustFragment#newInstance} factory method to
@@ -23,6 +34,7 @@ import android.widget.Toast;
  */
 public class CustFragment extends Fragment {
     private EditText namaCust,nopolCust,motorCust;
+    private SharedPreferences sharedPreferences;
     private Button btnNext;
     private String nama,nopol,motor,id_tek;
     private View rootView;
@@ -81,6 +93,7 @@ public class CustFragment extends Fragment {
     }
 
     private void initview() {
+        sharedPreferences = this.getActivity().getSharedPreferences("user-session", Context.MODE_PRIVATE);
         btnNext = rootView.findViewById(R.id.btnNext);
         namaCust = rootView.findViewById(R.id.etNamaCust);
         nopolCust = rootView.findViewById(R.id.etNopolCust);
@@ -106,13 +119,40 @@ public class CustFragment extends Fragment {
     }
 
     private void passdata(String nama, String nopol, String motor, String data_status) {
-        Bundle bundle = new Bundle();
-        bundle.putString("nama", nama);
-        bundle.putString("nopol", nopol);
-        bundle.putString("motor", motor);
-        bundle.putString("status", data_status);
-        CustItemFragment custItemFragment = new CustItemFragment();
-        custItemFragment.setArguments(bundle);
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, custItemFragment).commit();
+        String iduser = sharedPreferences.getString("id_user",null);
+        String idd = nama+motor+nopol;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("id_trans",idd);
+        editor.apply();
+        AndroidNetworking.post(KoneksiAPI.AddTrans)
+                .addBodyParameter("id",idd.toLowerCase(Locale.ROOT))
+                .addBodyParameter("user",iduser)
+                .addBodyParameter("nama",nama)
+                .addBodyParameter("nopol",nopol)
+                .addBodyParameter("status",data_status)
+                .addBodyParameter("jumlah","0")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText(getActivity(), "Transaksi Berhasil Dibuat", Toast.LENGTH_SHORT).show();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("nama", nama);
+                        bundle.putString("nopol", nopol);
+                        bundle.putString("motor", motor);
+                        bundle.putString("status", data_status);
+                        CustItemFragment custItemFragment = new CustItemFragment();
+                        custItemFragment.setArguments(bundle);
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, custItemFragment).commit();
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(getActivity(), "Transaksi Gagal Dibuat", Toast.LENGTH_SHORT).show();
+                        Log.i(TAG, "onError: " + anError);
+                    }
+                });
+
     }
 }

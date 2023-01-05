@@ -37,7 +37,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +58,8 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
     private SharedPreferences sharedPreferences;
     private ArrayList<HashMap<String, String>> list_barang;
     private View rootView;
+    private SimpleDateFormat dateFormat;
+    private String date;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -180,6 +184,7 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
                 view = inflater.inflate(R.layout.layout_list_barang, null);
             HashMap<String, Object> data = (HashMap<String, Object>) getItem(position);
             String idtek = sharedPreferences.getString("id_user",null);
+            String idtranss = sharedPreferences.getString("id_trans",null);
             final TextView txtnama = view.findViewById(R.id.tvNama1);
             final TextView txtharga = view.findViewById(R.id.tvHarga1);
             final TextView txtstok = view.findViewById(R.id.tvStok1);
@@ -188,43 +193,58 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
             final String strnama = (String) data.get("nama_barang");
             final String strharga = (String) data.get("harga_barang");
             final String strstok = (String) data.get("stok");
+            Calendar calendar = Calendar.getInstance();
+            dateFormat = new SimpleDateFormat("yyyy-MM-DD");
+            date = dateFormat.format(calendar.getTime());
             txtnama.setText(strnama);
             txtharga.setText(strharga);
             txtstok.setText(strstok);
             btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    AlertDialog.Builder inputjum = new AlertDialog.Builder(getActivity());
-                    inputjum.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            AndroidNetworking.post(KoneksiAPI.tempTrans)
-                                    .addBodyParameter("id","")
-                                    .addBodyParameter("iduser",idtek)
-                                    .addBodyParameter("idbarang",strid)
-                                    .addBodyParameter("jumlah", "1")
-                                    .setPriority(Priority.MEDIUM)
-                                    .build()
-                                    .getAsJSONObject(new JSONObjectRequestListener() {
-                                        @Override
-                                        public void onResponse(JSONObject response) {
-                                            Toast.makeText(getActivity(), "Barang Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
-                                        }
+                    AndroidNetworking.post(KoneksiAPI.tempTrans)
+                            .addBodyParameter("id","")
+                            .addBodyParameter("iduser",idtek)
+                            .addBodyParameter("idbarang",strid)
+                            .addBodyParameter("jumlah", "1")
+                            .setPriority(Priority.MEDIUM)
+                            .build()
+                            .getAsJSONObject(new JSONObjectRequestListener() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Toast.makeText(getActivity(), "Barang Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
+                                    postDetail();
+                                }
 
-                                        @Override
-                                        public void onError(ANError anError) {
-                                            Log.i(TAG, "onError: " + anError);
-                                        }
-                                    });
-                        }
-                    });
-                    inputjum.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    inputjum.show();
+                                private void postDetail() {
+                                    String hargaaa = txtharga.getText().toString();
+                                    AndroidNetworking.post(KoneksiAPI.AddDetailTrans)
+                                            .addBodyParameter("id","")
+                                            .addBodyParameter("transaksi",idtranss)
+                                            .addBodyParameter("barang",strid)
+                                            .addBodyParameter("jumlah", "1")
+                                            .addBodyParameter("harga", hargaaa)
+                                            .addBodyParameter("tanggal", date)
+                                            .setPriority(Priority.MEDIUM)
+                                            .build()
+                                            .getAsJSONObject(new JSONObjectRequestListener() {
+                                                @Override
+                                                public void onResponse(JSONObject response) {
+                                                    Log.d(TAG, "onResponse() returned: " + response);
+                                                }
+
+                                                @Override
+                                                public void onError(ANError anError) {
+                                                    Log.d(TAG, "onError() returned: " + anError);
+                                                }
+                                            });
+                                }
+
+                                @Override
+                                public void onError(ANError anError) {
+                                    Log.i(TAG, "onError: " + anError);
+                                }
+                            });
                 }
             });
             return view;

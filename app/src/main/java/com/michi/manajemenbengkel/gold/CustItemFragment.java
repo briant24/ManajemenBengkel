@@ -2,6 +2,7 @@ package com.michi.manajemenbengkel.gold;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -16,8 +17,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.material.tabs.TabLayout;
+
+import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +34,7 @@ import com.google.android.material.tabs.TabLayout;
  */
 public class CustItemFragment extends Fragment{
     private TextView stNama,stMotor,stNopol;
+    private SharedPreferences sharedPreferences;
     private Button btnSimpan,btnKembali;
     private View rootView;
     private ViewPager viewPager;
@@ -106,6 +115,7 @@ public class CustItemFragment extends Fragment{
         rootView = inflater.inflate(R.layout.fragment_cust_item, container, false);
         viewPager = rootView.findViewById(R.id.viewPager);
         tabLayout = rootView.findViewById(R.id.tabLayout);
+        sharedPreferences = this.getActivity().getSharedPreferences("user-session", Context.MODE_PRIVATE);
         Bundle bundle = this.getArguments();
         String nama_cust = bundle.getString("nama");
         String nopol_cust = bundle.getString("nopol");
@@ -122,12 +132,28 @@ public class CustItemFragment extends Fragment{
     }
 
     private void initview(String status_bayar) {
+        String idtrans = sharedPreferences.getString("id_trans",null);
         btnKembali = rootView.findViewById(R.id.button_kembali);
         btnKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CustFragment custItemFragment = new CustFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, custItemFragment).commit();
+                AndroidNetworking.post(KoneksiAPI.DelTrans)
+                        .addBodyParameter("id", idtrans)
+                        .setPriority(Priority.MEDIUM)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.d(TAG, "onResponse() returned: " + response);
+                                Toast.makeText(getActivity(), "Transaksi Berhasil dihapus", Toast.LENGTH_SHORT).show();
+                                CustFragment custItemFragment = new CustFragment();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, custItemFragment).commit();
+                            }
+                            @Override
+                            public void onError(ANError anError) {
+                                Log.d(TAG, "onError() returned: " + anError);
+                            }
+                        });
             }
         });
         btnSimpan = rootView.findViewById(R.id.button_selanjutnya);

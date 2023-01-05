@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -26,6 +27,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ConfirmTransFragment#newInstance} factory method to
@@ -36,6 +40,8 @@ public class ConfirmTransFragment extends Fragment {
     private Button kembali,confirm;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private SimpleDateFormat dateFormat;
+    private String date;
     private String mParam1;
     private String mParam2;
     private TextInputEditText etjasa,etbiayabarang;
@@ -121,7 +127,6 @@ public class ConfirmTransFragment extends Fragment {
                 int biaya = Integer.parseInt(etjasa.getText().toString());
                 int barang = Integer.parseInt(etbiayabarang.getText().toString());
                 int totalll = biaya+barang;
-                String idd = nama.substring(0,3)+totalll;
                 String total = String.valueOf(totalll);
                 AlertDialog.Builder inputjum = new AlertDialog.Builder(getActivity());
                 inputjum.setTitle("Konfirmasi Transaksi?");
@@ -129,20 +134,50 @@ public class ConfirmTransFragment extends Fragment {
                 inputjum.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        AndroidNetworking.post(KoneksiAPI.AddTrans)
-                                .addBodyParameter("id",idd)
-                                .addBodyParameter("user",iduser)
-                                .addBodyParameter("nama",nama)
-                                .addBodyParameter("nopol",nopol)
-                                .addBodyParameter("status",status)
+                        String idtrans = sharedPreferences.getString("id_trans",null);
+                        AndroidNetworking.post(KoneksiAPI.UpdateTrans)
+                                .addBodyParameter("id",idtrans)
+                                .addBodyParameter("jumlah",total)
                                 .setPriority(Priority.MEDIUM)
                                 .build()
                                 .getAsJSONObject(new JSONObjectRequestListener() {
                                     @Override
                                     public void onResponse(JSONObject response) {
+                                        makedetail();
                                         hapustemp();
                                         Toast.makeText(getActivity(), "Transaksi Berhasil", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                                        startActivity(intent);
                                     }
+
+                                    private void makedetail() {
+                                        Calendar calendar = Calendar.getInstance();
+                                        dateFormat = new SimpleDateFormat("yyyy-MM-DD");
+                                        date = dateFormat.format(calendar.getTime());
+                                        String idtranss = sharedPreferences.getString("id_trans",null);
+                                        String hargaaa = etjasa.getText().toString();
+                                        AndroidNetworking.post(KoneksiAPI.AddDetailTrans)
+                                                .addBodyParameter("id","")
+                                                .addBodyParameter("transaksi",idtranss)
+                                                .addBodyParameter("barang","1")
+                                                .addBodyParameter("jumlah", "1")
+                                                .addBodyParameter("harga", hargaaa)
+                                                .addBodyParameter("tanggal", date)
+                                                .setPriority(Priority.MEDIUM)
+                                                .build()
+                                                .getAsJSONObject(new JSONObjectRequestListener() {
+                                                    @Override
+                                                    public void onResponse(JSONObject response) {
+                                                        Log.d(TAG, "onResponse() returned: " + response);
+                                                    }
+
+                                                    @Override
+                                                    public void onError(ANError anError) {
+                                                        Log.d(TAG, "onError() returned: " + anError);
+                                                    }
+                                                });
+                                    }
+
                                     private void hapustemp() {
                                         AndroidNetworking.post(KoneksiAPI.delAlltempTrans)
                                                 .addBodyParameter("id",iduser)
