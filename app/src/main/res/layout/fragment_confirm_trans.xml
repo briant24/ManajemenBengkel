@@ -5,55 +5,56 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    tools:context=".ConfirmTransFragment">
+    tools:context=".teknisi.ConfirmTransFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
-        <com.google.android.material.textfield.TextInputLayout
-            app:hintTextColor="@color/black"
-            android:layout_marginHorizontal="30sp"
+        <EditText
+            android:id="@+id/etBiayaBarang"
+            android:background="@drawable/custom_input2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="50dp"
+            android:layout_marginVertical="15dp"
+            android:layout_marginHorizontal="40dp"
+            android:ems="10"
+            android:textColor="@color/darker_gray"
+            android:textColorHint="@color/darker_gray"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:hint="Biaya Barang" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:textColor="@color/black"
-                android:id="@+id/etbiayaBarang"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Biaya Barang" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginHorizontal="30sp"
-            app:hintTextColor="@color/black"
+        <EditText
+            android:id="@+id/etBiayaJasa"
+            android:background="@drawable/custom_input2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etbiayaJasa"
-                android:textColor="@color/black"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Biaya Jasa" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="50dp"
+            android:layout_marginVertical="15dp"
+            android:layout_marginHorizontal="40dp"
+            android:ems="10"
+            android:textColor="@color/darker_gray"
+            android:textColorHint="@color/darker_gray"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:hint="Biaya Jasa" />
         <LinearLayout
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
-                android:background="@color/accent_apk"
+                android:background="@drawable/custom_button"
                 android:id="@+id/btnKembali"
-                android:layout_width="140dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="3dp"
                 android:text="Kembali" />
             <Button
-                android:background="@color/accent_apk"
+                android:background="@drawable/custom_button"
                 android:layout_marginLeft="2dp"
                 android:id="@+id/btnKonfirm"
-                android:layout_width="140dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Selanjutnya" />
         </LinearLayout>

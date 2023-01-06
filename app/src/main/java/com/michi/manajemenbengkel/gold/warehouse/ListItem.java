@@ -1,4 +1,4 @@
-package com.michi.manajemenbengkel.gold;
+package com.michi.manajemenbengkel.gold.warehouse;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,13 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -23,14 +21,13 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.michi.manajemenbengkel.gold.KoneksiAPI;
+import com.michi.manajemenbengkel.gold.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +52,7 @@ public class ListItem extends AppCompatActivity implements View.OnClickListener,
         btnkembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                finish();
             }
         });
         fab.setOnClickListener(new View.OnClickListener() {

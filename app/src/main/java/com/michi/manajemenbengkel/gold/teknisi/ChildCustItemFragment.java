@@ -1,18 +1,14 @@
-package com.michi.manajemenbengkel.gold;
+package com.michi.manajemenbengkel.gold.teknisi;
 
 import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.CallSuper;
-import androidx.annotation.MainThread;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Parcelable;
 import android.util.Log;
@@ -21,8 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -32,6 +26,8 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.michi.manajemenbengkel.gold.KoneksiAPI;
+import com.michi.manajemenbengkel.gold.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,14 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ChildCustItemFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ChildCustItemFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener{
-    private TextView stNama,stMotor,stNopol;
-    private Button btnSimpan;
     private Activity actvity;
     private ListView listBarang;
     private AdapterWarehouse Adapter;
@@ -60,28 +49,14 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
     private View rootView;
     private SimpleDateFormat dateFormat;
     private String date;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public ChildCustItemFragment() {
-        // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ChildCustItemFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ChildCustItemFragment newInstance(String param1, String param2) {
         ChildCustItemFragment fragment = new ChildCustItemFragment();
         Bundle args = new Bundle();
@@ -103,7 +78,6 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         sharedPreferences = this.getActivity().getSharedPreferences("user-session",Context.MODE_PRIVATE);
         actvity = getActivity();
         rootView = inflater.inflate(R.layout.fragment_child_cust_item, container, false);
@@ -122,7 +96,7 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
 
     private void getData() {
         list_barang = new ArrayList<HashMap<String ,String >>();
-        AndroidNetworking.get(KoneksiAPI.ShowItem)
+        AndroidNetworking.get(KoneksiAPI.ShowListItem)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -235,7 +209,6 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
                                                             setnewStok(stokbaru);
                                                         }
                                                     } catch (Exception e) {
-                                                        Log.i(TAG, "onResponse: "+e);
                                                     }
                                                 }
 
@@ -297,6 +270,5 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
     }
 
     private void initview() {
-        btnSimpan = rootView.findViewById(R.id.button_kembali);
     }
 }

@@ -115,11 +115,11 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            Log.i("Success User", "onResponse: "+response);
                             pesan = Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_LONG);
                             pesan.show();
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
+                            finish();
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -151,5 +151,6 @@ public class RegisterActivity extends AppCompatActivity {
     public void btnLogin(View view) {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 }

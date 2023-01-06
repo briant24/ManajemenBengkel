@@ -1,6 +1,4 @@
-package com.michi.manajemenbengkel.gold;
-
-import static android.content.ContentValues.TAG;
+package com.michi.manajemenbengkel.gold.teknisi;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,18 +9,19 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.google.android.material.textfield.TextInputEditText;
+import com.michi.manajemenbengkel.gold.KoneksiAPI;
+import com.michi.manajemenbengkel.gold.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,11 +29,6 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ConfirmTransFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ConfirmTransFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private Button kembali,confirm;
@@ -44,10 +38,10 @@ public class ConfirmTransFragment extends Fragment {
     private String date;
     private String mParam1;
     private String mParam2;
-    private TextInputEditText etjasa,etbiayabarang;
+    private EditText etjasa,etbiayabarang;
     private View rootView;
+
     public ConfirmTransFragment() {
-        // Required empty public constructor
     }
     public static ConfirmTransFragment newInstance(String param1, String param2) {
         ConfirmTransFragment fragment = new ConfirmTransFragment();
@@ -84,12 +78,10 @@ public class ConfirmTransFragment extends Fragment {
                                 etbiayabarang.setText(jumlah);
                             }
                         } catch (Exception e) {
-                            Log.i(TAG, "onResponse: "+e);
                         }
                     }
                     @Override
                     public void onError(ANError anError) {
-                        Log.i(TAG, "onError: " + anError);
                     }
                 });
     }
@@ -97,15 +89,14 @@ public class ConfirmTransFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         sharedPreferences = this.getActivity().getSharedPreferences("user-session", Context.MODE_PRIVATE);
         rootView = inflater.inflate(R.layout.fragment_confirm_trans, container, false);
         Bundle bundle = this.getArguments();
         String nama_cust = bundle.getString("nama");
         String nopol_cust = bundle.getString("nopol");
         String status_cust = bundle.getString("status");
-        etjasa = rootView.findViewById(R.id.etbiayaJasa);
-        etbiayabarang = rootView.findViewById(R.id.etbiayaBarang);
+        etjasa = rootView.findViewById(R.id.etBiayaJasa);
+        etbiayabarang = rootView.findViewById(R.id.etBiayaBarang);
         initView(nama_cust,nopol_cust,status_cust);
         return rootView;
     }
@@ -168,12 +159,10 @@ public class ConfirmTransFragment extends Fragment {
                                                 .getAsJSONObject(new JSONObjectRequestListener() {
                                                     @Override
                                                     public void onResponse(JSONObject response) {
-                                                        Log.d(TAG, "onResponse() returned: " + response);
                                                     }
 
                                                     @Override
                                                     public void onError(ANError anError) {
-                                                        Log.d(TAG, "onError() returned: " + anError);
                                                     }
                                                 });
                                     }
@@ -186,12 +175,10 @@ public class ConfirmTransFragment extends Fragment {
                                                 .getAsJSONObject(new JSONObjectRequestListener() {
                                                     @Override
                                                     public void onResponse(JSONObject response) {
-                                                        Log.i(TAG, "onResponse: "+response);
                                                     }
 
                                                     @Override
                                                     public void onError(ANError anError) {
-                                                        Log.i(TAG, "onError: "+anError);
                                                         Toast.makeText(getActivity(), "Gagal Hapus", Toast.LENGTH_SHORT).show();
                                                     }
                                                 });

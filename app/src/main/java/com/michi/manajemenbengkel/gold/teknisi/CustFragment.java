@@ -1,6 +1,4 @@
-package com.michi.manajemenbengkel.gold;
-
-import static android.content.ContentValues.TAG;
+package com.michi.manajemenbengkel.gold.teknisi;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,20 +6,19 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.michi.manajemenbengkel.gold.KoneksiAPI;
+import com.michi.manajemenbengkel.gold.R;
 
 import org.json.JSONObject;
 

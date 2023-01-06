@@ -1,18 +1,11 @@
-package com.michi.manajemenbengkel.gold;
+package com.michi.manajemenbengkel.gold.teknisi;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
+import com.michi.manajemenbengkel.gold.R;
+import com.michi.manajemenbengkel.gold.teknisi.CustFragment;
 
 public class TeknisiWorkActivity extends AppCompatActivity {
     @Override

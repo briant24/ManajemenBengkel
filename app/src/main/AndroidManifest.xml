@@ -14,20 +14,21 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".TeknisiWorkActivity"
+            android:name=".teknisi.TeknisiWorkActivity"
             android:exported="true" />
         <activity
-            android:name=".ListItem"
+            android:name=".warehouse.ListItem"
             android:exported="true" />
         <activity
-            android:name=".FormWarehouse"
+            android:name=".warehouse.FormWarehouse"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".teknisi.MainActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:noHistory="true" />
         <activity
             android:name=".RegisterActivity"
             android:exported="true">

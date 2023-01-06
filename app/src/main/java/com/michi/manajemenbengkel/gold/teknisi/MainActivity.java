@@ -1,4 +1,4 @@
-package com.michi.manajemenbengkel.gold;
+package com.michi.manajemenbengkel.gold.teknisi;
 
 import static android.content.ContentValues.TAG;
 
@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.michi.manajemenbengkel.gold.R;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void keluar(View view) {
-        onBackPressed();
+        finish();
     }
 
     public void history(View view) {

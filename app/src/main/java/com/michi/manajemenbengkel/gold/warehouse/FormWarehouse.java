@@ -1,4 +1,4 @@
-package com.michi.manajemenbengkel.gold;
+package com.michi.manajemenbengkel.gold.warehouse;
 
 import static android.content.ContentValues.TAG;
 
@@ -20,6 +20,8 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.michi.manajemenbengkel.gold.KoneksiAPI;
+import com.michi.manajemenbengkel.gold.R;
 
 import org.json.JSONObject;
 
@@ -116,7 +118,6 @@ public class FormWarehouse extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        Log.i("Success Item Warehouse", "onResponse: "+response);
                         Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_LONG).show();
                         onBackPressed();
                     }catch (Exception e){
@@ -127,7 +128,6 @@ public class FormWarehouse extends AppCompatActivity {
                 @Override
                 public void onError(ANError anError) {
                     Toast.makeText(getApplicationContext(), "Gagal!", Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, "onError: "+ anError.getErrorDetail());
                 }
             });
     }
