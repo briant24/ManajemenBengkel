@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void cekuser(String stuser, String stpass) {
-        Log.i(TAG, "cekuser: "+ stuser + stpass);
         AndroidNetworking.post(KoneksiAPI.login)
                 .addBodyParameter("username", stuser)
                 .addBodyParameter("password", stpass)

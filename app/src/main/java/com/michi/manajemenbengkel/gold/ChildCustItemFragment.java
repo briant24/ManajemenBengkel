@@ -213,7 +213,55 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
                                 @Override
                                 public void onResponse(JSONObject response) {
                                     Toast.makeText(getActivity(), "Barang Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
+                                    changeWarehouse();
                                     postDetail();
+                                }
+
+                                private void changeWarehouse() {
+                                    AndroidNetworking.post(KoneksiAPI.ShowStokItem)
+                                            .addBodyParameter("id", strid)
+                                            .setPriority(Priority.MEDIUM)
+                                            .build()
+                                            .getAsJSONObject(new JSONObjectRequestListener() {
+                                                @Override
+                                                public void onResponse(JSONObject response) {
+                                                    try {
+                                                        JSONArray jsonArray = response.getJSONArray("show_stok");
+                                                        for (int a = 0; a < jsonArray.length(); a++) {
+                                                            JSONObject jsonObject = jsonArray.getJSONObject(a);
+                                                            String stok = jsonObject.getString("stok");
+                                                            int stokskrg = Integer.parseInt(stok);
+                                                            int stokbaru = stokskrg-1;
+                                                            setnewStok(stokbaru);
+                                                        }
+                                                    } catch (Exception e) {
+                                                        Log.i(TAG, "onResponse: "+e);
+                                                    }
+                                                }
+
+                                                private void setnewStok(int stokbaru) {
+                                                    String newstok = String.valueOf(stokbaru);
+                                                    AndroidNetworking.post(KoneksiAPI.updatestok)
+                                                            .addBodyParameter("id", strid)
+                                                            .addBodyParameter("stok", newstok)
+                                                            .setPriority(Priority.MEDIUM)
+                                                            .build()
+                                                            .getAsJSONObject(new JSONObjectRequestListener() {
+                                                                @Override
+                                                                public void onResponse(JSONObject response) {
+                                                                    getData();
+                                                                }
+
+                                                                @Override
+                                                                public void onError(ANError anError) {
+                                                                }
+                                                            });
+                                                }
+
+                                                @Override
+                                                public void onError(ANError anError) {
+                                                }
+                                            });
                                 }
 
                                 private void postDetail() {
@@ -230,19 +278,16 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
                                             .getAsJSONObject(new JSONObjectRequestListener() {
                                                 @Override
                                                 public void onResponse(JSONObject response) {
-                                                    Log.d(TAG, "onResponse() returned: " + response);
                                                 }
 
                                                 @Override
                                                 public void onError(ANError anError) {
-                                                    Log.d(TAG, "onError() returned: " + anError);
                                                 }
                                             });
                                 }
 
                                 @Override
                                 public void onError(ANError anError) {
-                                    Log.i(TAG, "onError: " + anError);
                                 }
                             });
                 }

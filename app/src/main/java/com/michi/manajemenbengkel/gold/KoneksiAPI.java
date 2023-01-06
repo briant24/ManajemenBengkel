@@ -13,8 +13,10 @@ public class KoneksiAPI {
     public static final String deltempTrans = db+"transTemp/deltranstemp.php";
     public static final String delAlltempTrans = db+"transTemp/delalltranstemp.php";
     public static final String ShowItem = db+"warehouse/showItem.php";
+    public static final String ShowStokItem = db+"warehouse/showstok.php";
     public static final String ShowItemTek = db+"transTemp/showtranstemp.php";
     public static final String ShowPaidTemTek = db+"transTemp/showpaidtemp.php";
+    public static final String updatestok = db+"warehouse/updatestok.php";
     public static final String AllUser = db+"user/cuduser.php";
     public static final String login = db+"user/auth.php";
     public static final String register = db+"user/cekUser.php";
