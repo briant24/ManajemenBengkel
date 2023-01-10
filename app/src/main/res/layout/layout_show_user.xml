@@ -5,17 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnHapusdet"
-        android:text="Hapus"
-        android:background="@drawable/custom_button"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
     <LinearLayout
         android:background="@drawable/linear_border"
         android:layout_width="match_parent"
@@ -23,17 +12,17 @@
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView25"
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="NAMA BARANG"
+            android:text="NAMA USER"
             android:textSize="10sp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/tvNama2"
+            android:id="@+id/tvNama69"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="5dp"
             android:textColor="@color/black"
@@ -42,17 +31,17 @@
             android:text="" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView52"
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="JUMLAH BARANG"
+            android:text="LEVEL USER"
             android:textSize="10sp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/tvJumlah1"
+            android:id="@+id/tvLevel69"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="5dp"
             android:textSize="15sp"

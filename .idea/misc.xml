@@ -23,6 +23,7 @@
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_password_focused.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_password_focused2.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_profile.xml" value="0.3609375" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_tambahuser.xml" value="0.20533333333333334" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_username_focused.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/ic_username_focused2.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/linear_border.xml" value="0.20810810810810812" />
@@ -30,23 +31,34 @@
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/password.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/round_border.xml" value="0.240625" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/drawable/username.xml" value="0.240625" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_detail_transaksi.xml" value="0.13768115942028986" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_form_warehouse.xml" value="0.22" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_history_teknisi.xml" value="0.18198198198198198" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_list_item.xml" value="0.22" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_list_transaksi.xml" value="0.15443840579710144" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_list_user.xml" value="0.13179347826086957" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_login.xml" value="0.22447916666666667" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_main.xml" value="0.21041666666666667" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_main2.xml" value="0.25" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_manager.xml" value="0.13179347826086957" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_profile_teknisi.xml" value="0.19414414414414413" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_register.xml" value="0.19927536231884058" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/activity_teknisi_work.xml" value="0.18795289855072464" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/content_history_teknisi.xml" value="0.19414414414414413" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/fragment_belum_bayar.xml" value="0.14356884057971014" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/fragment_child_cust_item.xml" value="0.18198198198198198" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/fragment_child_show_cust_item.xml" value="0.18198198198198198" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/fragment_confirm_trans.xml" value="0.19414414414414413" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/fragment_cust.xml" value="0.18198198198198198" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/fragment_cust_item.xml" value="0.22" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/fragment_sudah_bayar.xml" value="0.13768115942028986" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/layout_detail_transaksi.xml" value="0.25" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/layout_history_tek.xml" value="0.19414414414414413" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/layout_list_barang.xml" value="0.22" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/layout_list_item.xml" value="0.1518987341772152" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/layout_list_show.xml" value="0.19414414414414413" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/layout_list_transaksi.xml" value="0.21" />
+        <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/layout/layout_show_user.xml" value="0.13179347826086957" />
         <entry key="..\:/Project/AndroidStudioProject/ManajemenBengkel/app/src/main/res/menu/top_navigation.xml" value="0.19414414414414413" />
       </map>
     </option>

@@ -1,4 +1,4 @@
-package com.michi.manajemenbengkel.gold.teknisi;
+package com.michi.manajemenbengkel.gold.manager;
 
 import static android.content.ContentValues.TAG;
 
@@ -12,11 +12,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.michi.manajemenbengkel.gold.R;
+import com.michi.manajemenbengkel.gold.kasir.ListTransaksiActivity;
+import com.michi.manajemenbengkel.gold.koneksi.RegisterActivity;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class ManagerActivity extends AppCompatActivity {
     private TextView nama, tanggal, iduser;
     private String currentdate;
     private SharedPreferences sharedPreferences;
@@ -24,16 +27,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        nama = findViewById(R.id.intNama);
-        tanggal = findViewById(R.id.txt_tgl);
-        iduser = findViewById(R.id.idUser);
+        setContentView(R.layout.activity_manager);
+        nama = findViewById(R.id.intNamaMan);
+        tanggal = findViewById(R.id.txt_tglll);
+        iduser = findViewById(R.id.idUserr);
         Calendar calendar = Calendar.getInstance();
         currentdate = DateFormat.getDateInstance(android.icu.text.DateFormat.FULL).format(calendar.getTime());
         tanggal.setText(currentdate);
         sharedPreferences = getSharedPreferences("user-session",MODE_PRIVATE);
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -41,24 +43,23 @@ public class MainActivity extends AppCompatActivity {
         String namaUser = data.getStringExtra("nama");
         nama.setText(namaUser);
     }
+    public void listuser(View view) {
+        Intent list = new Intent(getApplicationContext(), ListUserActivity.class);
+        startActivity(list);
+    }
+
+    public void tambahuser(View view) {
+        Intent reg = new Intent(getApplicationContext(), RegisterActivity.class);
+        startActivity(reg);
+    }
+
+    public void history(View view) {
+        Intent his = new Intent(getApplicationContext(), ListTransaksiActivity.class);
+        startActivity(his);
+    }
 
     public void keluar(View view) {
         finish();
         System.exit(0);
-    }
-
-    public void history(View view) {
-        Intent history = new Intent(getApplicationContext(), HistoryTeknisiActivity.class);
-        startActivity(history);
-    }
-
-    public void bekerja(View view) {
-        Intent kerja = new Intent(getApplicationContext(), TeknisiWorkActivity.class);
-        startActivity(kerja);
-    }
-
-    public void profile(View view) {
-        Intent profile = new Intent(getApplicationContext(), ProfileTeknisiActivity.class);
-        startActivity(profile);
     }
 }

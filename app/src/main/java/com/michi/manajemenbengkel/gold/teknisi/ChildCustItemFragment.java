@@ -3,13 +3,13 @@ package com.michi.manajemenbengkel.gold.teknisi;
 import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +26,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.michi.manajemenbengkel.gold.KoneksiAPI;
+import com.michi.manajemenbengkel.gold.koneksi.KoneksiAPI;
 import com.michi.manajemenbengkel.gold.R;
 
 import org.json.JSONArray;
@@ -47,11 +47,11 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
     private SharedPreferences sharedPreferences;
     private ArrayList<HashMap<String, String>> list_barang;
     private View rootView;
-    private SimpleDateFormat dateFormat;
-    private String date;
+    private Handler handler = new Handler();
+    private Runnable runnable;
+    private int delay = 1000;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     private String mParam1;
     private String mParam2;
 
@@ -86,6 +86,23 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
         listBarang.setOverScrollMode(View.OVER_SCROLL_NEVER);
         initview();
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        handler.postDelayed( runnable = new Runnable() {
+            public void run() {
+                getData();
+                handler.postDelayed(runnable, delay);
+            }
+        }, delay);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        handler.removeCallbacks(runnable);
+        super.onPause();
     }
 
     @Override
@@ -126,7 +143,6 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
 
                     @Override
                     public void onError(ANError anError) {
-                        Log.i(TAG, "onError: " + anError);
                     }
                 });
     }
@@ -167,20 +183,19 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
             final String strnama = (String) data.get("nama_barang");
             final String strharga = (String) data.get("harga_barang");
             final String strstok = (String) data.get("stok");
-            Calendar calendar = Calendar.getInstance();
-            dateFormat = new SimpleDateFormat("yyyy-MM-DD");
-            date = dateFormat.format(calendar.getTime());
             txtnama.setText(strnama);
             txtharga.setText(strharga);
             txtstok.setText(strstok);
             btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    AndroidNetworking.post(KoneksiAPI.tempTrans)
+                    String hargaaa = txtharga.getText().toString();
+                    AndroidNetworking.post(KoneksiAPI.AddDetailTrans)
                             .addBodyParameter("id","")
-                            .addBodyParameter("iduser",idtek)
-                            .addBodyParameter("idbarang",strid)
+                            .addBodyParameter("transaksi",idtranss)
+                            .addBodyParameter("barang",strid)
                             .addBodyParameter("jumlah", "1")
+                            .addBodyParameter("harga", hargaaa)
                             .setPriority(Priority.MEDIUM)
                             .build()
                             .getAsJSONObject(new JSONObjectRequestListener() {
@@ -188,7 +203,6 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
                                 public void onResponse(JSONObject response) {
                                     Toast.makeText(getActivity(), "Barang Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
                                     changeWarehouse();
-                                    postDetail();
                                 }
 
                                 private void changeWarehouse() {
@@ -236,29 +250,6 @@ public class ChildCustItemFragment extends Fragment implements View.OnClickListe
                                                 }
                                             });
                                 }
-
-                                private void postDetail() {
-                                    String hargaaa = txtharga.getText().toString();
-                                    AndroidNetworking.post(KoneksiAPI.AddDetailTrans)
-                                            .addBodyParameter("id","")
-                                            .addBodyParameter("transaksi",idtranss)
-                                            .addBodyParameter("barang",strid)
-                                            .addBodyParameter("jumlah", "1")
-                                            .addBodyParameter("harga", hargaaa)
-                                            .addBodyParameter("tanggal", date)
-                                            .setPriority(Priority.MEDIUM)
-                                            .build()
-                                            .getAsJSONObject(new JSONObjectRequestListener() {
-                                                @Override
-                                                public void onResponse(JSONObject response) {
-                                                }
-
-                                                @Override
-                                                public void onError(ANError anError) {
-                                                }
-                                            });
-                                }
-
                                 @Override
                                 public void onError(ANError anError) {
                                 }

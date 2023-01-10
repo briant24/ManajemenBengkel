@@ -1,4 +1,4 @@
-package com.michi.manajemenbengkel.gold;
+package com.michi.manajemenbengkel.gold.koneksi;
 
 import static android.content.ContentValues.TAG;
 
@@ -7,12 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
-import android.util.Base64;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +20,9 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.michi.manajemenbengkel.gold.R;
+import com.michi.manajemenbengkel.gold.koneksi.KoneksiAPI;
+import com.michi.manajemenbengkel.gold.koneksi.LoginActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -96,7 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError) {
-                        Log.i("cek error", "onError: " + anError.getErrorDetail());
                     }
                 });
     }
@@ -117,9 +116,6 @@ public class RegisterActivity extends AppCompatActivity {
                         try {
                             pesan = Toast.makeText(getApplicationContext(), "Berhasil!", Toast.LENGTH_LONG);
                             pesan.show();
-                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                            startActivity(intent);
-                            finish();
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -146,11 +142,5 @@ public class RegisterActivity extends AppCompatActivity {
                         countDownTimer.start();
                     }
                 });
-    }
-
-    public void btnLogin(View view) {
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        startActivity(intent);
-        finish();
     }
 }

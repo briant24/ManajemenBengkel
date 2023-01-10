@@ -17,7 +17,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.michi.manajemenbengkel.gold.KoneksiAPI;
+import com.michi.manajemenbengkel.gold.koneksi.KoneksiAPI;
 import com.michi.manajemenbengkel.gold.R;
 
 import org.json.JSONObject;
@@ -100,7 +100,7 @@ public class CustFragment extends Fragment {
     private void passdata(String nama, String nopol, String motor, String data_status) {
         String iduser = sharedPreferences.getString("id_user",null);
         Calendar calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("DD/MM/yyyy");
+        dateFormat = new SimpleDateFormat("yyyy/MM/DD");
         date = dateFormat.format(calendar.getTime());
         String idd = date+nama+motor;
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -111,8 +111,10 @@ public class CustFragment extends Fragment {
                 .addBodyParameter("user",iduser)
                 .addBodyParameter("nama",nama)
                 .addBodyParameter("nopol",nopol)
+                .addBodyParameter("motor",motor)
                 .addBodyParameter("status",data_status)
                 .addBodyParameter("jumlah","0")
+                .addBodyParameter("tanggal",date)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {

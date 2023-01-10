@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context=".manager.ListUserActivity">
+    <ListView
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listUser"
+        android:layout_above="@id/btnkembaliAllUser"/>
+    <Button
+        android:id="@+id/btnkembaliAllUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="KELUAR"
+        android:background="@drawable/custom_button"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

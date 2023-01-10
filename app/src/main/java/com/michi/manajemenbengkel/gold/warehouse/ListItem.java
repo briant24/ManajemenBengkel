@@ -21,7 +21,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.michi.manajemenbengkel.gold.KoneksiAPI;
+import com.michi.manajemenbengkel.gold.koneksi.KoneksiAPI;
 import com.michi.manajemenbengkel.gold.R;
 
 import org.json.JSONArray;
@@ -34,11 +34,11 @@ import java.util.List;
 import java.util.Map;
 
 public class ListItem extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener{
-    Button btnkembali;
-    Activity actvity;
-    ListView listItem;
-    ListAdapter Adapter;
-    ArrayList<HashMap<String, String>> list_item;
+    private Button btnkembali;
+    private Activity actvity;
+    private ListView listItem;
+    private ListAdapter Adapter;
+    private ArrayList<HashMap<String, String>> list_item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

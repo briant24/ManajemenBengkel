@@ -1,5 +1,7 @@
 package com.michi.manajemenbengkel.gold.teknisi;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +23,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.michi.manajemenbengkel.gold.KoneksiAPI;
+import com.michi.manajemenbengkel.gold.koneksi.KoneksiAPI;
 import com.michi.manajemenbengkel.gold.R;
 
 import org.json.JSONArray;
@@ -62,9 +65,9 @@ public class ConfirmTransFragment extends Fragment {
     }
 
     private void getData() {
-        String iduser = sharedPreferences.getString("id_user",null);
+        String idtranss = sharedPreferences.getString("id_trans",null);
         AndroidNetworking.post(KoneksiAPI.ShowPaidTemTek)
-                .addBodyParameter("iduser",iduser)
+                .addBodyParameter("idtransaksi",idtranss)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -135,10 +138,10 @@ public class ConfirmTransFragment extends Fragment {
                                     @Override
                                     public void onResponse(JSONObject response) {
                                         makedetail();
-                                        hapustemp();
                                         Toast.makeText(getActivity(), "Transaksi Berhasil", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getActivity(), MainActivity.class);
                                         startActivity(intent);
+                                        getActivity().finish();
                                     }
 
                                     private void makedetail() {
@@ -163,23 +166,6 @@ public class ConfirmTransFragment extends Fragment {
 
                                                     @Override
                                                     public void onError(ANError anError) {
-                                                    }
-                                                });
-                                    }
-
-                                    private void hapustemp() {
-                                        AndroidNetworking.post(KoneksiAPI.delAlltempTrans)
-                                                .addBodyParameter("id",iduser)
-                                                .setPriority(Priority.MEDIUM)
-                                                .build()
-                                                .getAsJSONObject(new JSONObjectRequestListener() {
-                                                    @Override
-                                                    public void onResponse(JSONObject response) {
-                                                    }
-
-                                                    @Override
-                                                    public void onError(ANError anError) {
-                                                        Toast.makeText(getActivity(), "Gagal Hapus", Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                     }
